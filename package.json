@@ -8,13 +8,19 @@
     "create-local": "graph create --node http://localhost:8020/ alephao/Genzee",
     "remove-local": "graph remove --node http://localhost:8020/ alephao/Genzee",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee",
-    "format": "prettier . -w"
+    "format": "prettier . -w",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.25.1",
     "@graphprotocol/graph-ts": "0.24.1"
   },
   "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.5",
     "prettier": "^2.5.1"
+  },
+  "lint-staged": {
+    "*.-w": "prettier --write"
   }
 }

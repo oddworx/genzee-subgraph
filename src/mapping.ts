@@ -1,81 +1,35 @@
 import { BigInt } from "@graphprotocol/graph-ts";
-import {
-  Genzee,
-  Approval,
-  ApprovalForAll,
-  OwnershipTransferred,
-  Transfer,
-} from "../generated/Genzee/Genzee";
-import { ExampleEntity } from "../generated/schema";
+import { Transfer } from "../generated/Genzee/Genzee";
+import { GenzeeToken, User } from "../generated/schema";
 
-export function handleApproval(event: Approval): void {
-  // Entities can be loaded from the store using a string ID; this ID
-  // needs to be unique across all entities of the same type
-  let entity = ExampleEntity.load(event.transaction.from.toHex());
-
-  // Entities only exist after they have been saved to the store;
-  // `null` checks allow to create entities on demand
-  if (!entity) {
-    entity = new ExampleEntity(event.transaction.from.toHex());
-
-    // Entity fields can be set using simple assignments
-    entity.count = BigInt.fromI32(0);
+export function handleTransfer(event: Transfer): void {
+  let token = GenzeeToken.load(event.params.tokenId.toString());
+  if (!token) {
+    token = new GenzeeToken(event.params.tokenId.toString());
+    token.tokenID = event.params.tokenId;
   }
 
-  // BigInt and BigDecimal math are supported
-  entity.count = entity.count + BigInt.fromI32(1);
+  token.owner = event.params.to.toHexString();
+  token.save();
 
-  // Entity fields can be set based on event parameters
-  entity.owner = event.params.owner;
-  entity.approved = event.params.approved;
+  let userTo = User.load(event.params.to.toHexString());
+  if (!userTo) {
+    userTo = new User(event.params.to.toHexString());
+    userTo.balance = userTo.balance.plus(BigInt.fromI32(1));
+    userTo.save();
+  }
 
-  // Entities can be written to the store with `.save()`
-  entity.save();
+  if (
+    event.params.from.toHexString() ==
+    "0x0000000000000000000000000000000000000000"
+  ) {
+    return;
+  }
 
-  // Note: If a handler doesn't require existing field values, it is faster
-  // _not_ to load the entity from the store. Instead, create it fresh with
-  // `new Entity(...)`, set the fields that should be updated and save the
-  // entity back to the store. Fields that were not set or unset remain
-  // unchanged, allowing for partial updates to be applied.
-
-  // It is also possible to access smart contracts from mappings. For
-  // example, the contract that has emitted the event can be connected to
-  // with:
-  //
-  // let contract = Contract.bind(event.address)
-  //
-  // The following functions can then be called on this contract to access
-  // state variables and other data:
-  //
-  // - contract.RESERVED_TOKENS(...)
-  // - contract.TOTAL_TOKENS(...)
-  // - contract.allGenzeesOfWallet(...)
-  // - contract.balanceOf(...)
-  // - contract.baseURI(...)
-  // - contract.getApproved(...)
-  // - contract.isApprovedForAll(...)
-  // - contract.name(...)
-  // - contract.owner(...)
-  // - contract.ownerOf(...)
-  // - contract.provenance(...)
-  // - contract.reservedsLeft(...)
-  // - contract.saleIsActive(...)
-  // - contract.startingIndex(...)
-  // - contract.supportsInterface(...)
-  // - contract.symbol(...)
-  // - contract.threshold(...)
-  // - contract.tokenByIndex(...)
-  // - contract.tokenOfOwnerByIndex(...)
-  // - contract.tokenURI(...)
-  // - contract.tokensLeft(...)
-  // - contract.totalSupply(...)
-  // - contract.totalSupplyMinusReserved(...)
-  // - contract.tripleUnitPrice(...)
-  // - contract.unitPrice(...)
+  let userFrom = User.load(event.params.from.toHexString());
+  if (!userFrom) {
+    userFrom = new User(event.params.from.toHexString());
+    userFrom.balance = userFrom.balance.minus(BigInt.fromI32(1));
+    userFrom.save();
+  }
 }
-
-export function handleApprovalForAll(event: ApprovalForAll): void {}
-
-export function handleOwnershipTransferred(event: OwnershipTransferred): void {}
-
-export function handleTransfer(event: Transfer): void {}

@@ -1,6 +1,11 @@
-type ExampleEntity @entity {
+type GenzeeToken @entity {
   id: ID!
-  count: BigInt!
-  owner: Bytes! # address
-  approved: Bytes! # address
+  tokenID: BigInt!
+  owner: User!
+}
+
+type User @entity {
+  id: ID!
+  tokens: [GenzeeToken!]! @derivedFrom(field: "owner")
+  balance: BigInt!
 }

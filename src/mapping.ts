@@ -13,11 +13,13 @@ export function handleTransfer(event: Transfer): void {
   token.save();
 
   let userTo = User.load(event.params.to.toHexString());
+
   if (!userTo) {
     userTo = new User(event.params.to.toHexString());
-    userTo.balance = userTo.balance.plus(BigInt.fromI32(1));
-    userTo.save();
   }
+
+  userTo.balance = userTo.balance.plus(BigInt.fromI32(1));
+  userTo.save();
 
   if (
     event.params.from.toHexString() ==
@@ -29,7 +31,8 @@ export function handleTransfer(event: Transfer): void {
   let userFrom = User.load(event.params.from.toHexString());
   if (!userFrom) {
     userFrom = new User(event.params.from.toHexString());
-    userFrom.balance = userFrom.balance.minus(BigInt.fromI32(1));
-    userFrom.save();
   }
+
+  userFrom.balance = userFrom.balance.minus(BigInt.fromI32(1));
+  userFrom.save();
 }

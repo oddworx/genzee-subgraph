@@ -23,6 +23,7 @@ export const loadOrCreateUser: (id: string) => User = (id) => {
     user = new User(id);
     user.genzeeBalance = 0;
     user.oddxBalance = BigInt.zero();
+    user.oddxClaimed = BigInt.zero();
   }
 
   return user;

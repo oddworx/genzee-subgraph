@@ -49,6 +49,10 @@ export function handleClaim(event: UserClaimedNftRewards): void {
   stats.totalOddxClaimed = stats.totalOddxClaimed.plus(event.params.amount);
   stats.save();
 
+  let user = loadOrCreateUser(event.params.user.toHexString());
+  user.oddxClaimed = user.oddxClaimed.plus(event.params.amount);
+  user.save();
+
   let token = GenzeeToken.load(event.params.genzee.toString());
   token!.oddxClaimed = token!.oddxClaimed.plus(event.params.amount);
   token!.save();

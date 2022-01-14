@@ -11,6 +11,7 @@ type User @entity {
   tokens: [GenzeeToken!]! @derivedFrom(field: "owner")
   genzeeBalance: Int!
   oddxBalance: BigInt!
+  oddxClaimed: BigInt!
 }
 
 type GenzeeStats @entity {

@@ -38,6 +38,10 @@ export function handleStake(event: StakedNft): void {
   token!.save();
 }
 
-export function handleUnstake(event: UnstakedNft): void {}
+export function handleUnstake(event: UnstakedNft): void {
+  let token = GenzeeToken.load(event.params.genzee.toString());
+  token!.stakedAt = null;
+  token!.save();
+}
 
 export function handleClaim(event: UserClaimedNftRewards): void {}

@@ -35,6 +35,7 @@ export function handleTransfer(event: Transfer): void {
 
   if (userTo.genzeeBalance == 0) {
     stats.totalGenzeeOwners++;
+    stats.save();
   }
 
   userTo.genzeeBalance++;
@@ -44,7 +45,6 @@ export function handleTransfer(event: Transfer): void {
     event.params.from.toHexString() ==
     "0x0000000000000000000000000000000000000000"
   ) {
-    stats.save();
     return;
   }
 

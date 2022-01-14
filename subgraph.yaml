@@ -22,7 +22,7 @@ dataSources:
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/mapping.ts
+      file: ./src/genzee.ts
   - kind: ethereum
     name: Oddworx
     network: mainnet

@@ -7,5 +7,5 @@ type GenzeeToken @entity {
 type User @entity {
   id: ID!
   tokens: [GenzeeToken!]! @derivedFrom(field: "owner")
-  balance: BigInt!
+  genzeeBalance: Int!
 }

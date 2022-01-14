@@ -1,4 +1,3 @@
-import { BigInt } from "@graphprotocol/graph-ts";
 import { Transfer } from "../generated/Genzee/Genzee";
 import { GenzeeToken, User } from "../generated/schema";
 
@@ -18,7 +17,7 @@ export function handleTransfer(event: Transfer): void {
     userTo = new User(event.params.to.toHexString());
   }
 
-  userTo.balance = userTo.balance.plus(BigInt.fromI32(1));
+  userTo.genzeeBalance++;
   userTo.save();
 
   if (
@@ -33,6 +32,6 @@ export function handleTransfer(event: Transfer): void {
     userFrom = new User(event.params.from.toHexString());
   }
 
-  userFrom.balance = userFrom.balance.minus(BigInt.fromI32(1));
+  userFrom.genzeeBalance--;
   userFrom.save();
 }

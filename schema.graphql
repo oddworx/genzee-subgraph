@@ -8,4 +8,5 @@ type User @entity {
   id: ID!
   tokens: [GenzeeToken!]! @derivedFrom(field: "owner")
   genzeeBalance: Int!
+  oddxBalance: BigInt!
 }

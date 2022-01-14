@@ -52,7 +52,7 @@ export function handleTransfer(event: Transfer): void {
   userFrom.genzeeBalance--;
 
   if (userFrom.genzeeBalance == 0) {
-    stats.totalGenzeeOwners++;
+    stats.totalGenzeeOwners--;
     stats.save();
   }
 

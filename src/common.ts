@@ -1,5 +1,5 @@
 import { BigInt } from "@graphprotocol/graph-ts";
-import { GenzeeInfo, User } from "../generated/schema";
+import { GenzeeInfo, GenzeeToken, User } from "../generated/schema";
 
 export const genzeeContractAddress =
   "0x201675fBFAAAC3A51371E4C31FF73Ac14ceE2A5A";
@@ -14,6 +14,16 @@ export const loadGenzeeStats: () => GenzeeInfo = () => {
     stats.totalOddxClaimed = BigInt.zero();
   }
   return stats;
+};
+
+export const loadOrCreateGenzee: (id: BigInt) => GenzeeToken = (id) => {
+  let token = GenzeeToken.load(id.toString());
+  if (!token) {
+    token = new GenzeeToken(id.toString());
+    token.tokenID = id;
+    token.oddxClaimed = BigInt.zero();
+  }
+  return token;
 };
 
 export const loadOrCreateUser: (id: string) => User = (id) => {

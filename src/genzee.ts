@@ -1,8 +1,7 @@
-import { BigInt } from "@graphprotocol/graph-ts";
 import { Transfer } from "../generated/Genzee/Genzee";
-import { GenzeeToken } from "../generated/schema";
 import {
   loadGenzeeStats,
+  loadOrCreateGenzee,
   loadOrCreateUser,
   oddxContractAddress,
 } from "./common";
@@ -19,13 +18,7 @@ export function handleTransfer(event: Transfer): void {
     return;
   }
 
-  let token = GenzeeToken.load(event.params.tokenId.toString());
-  if (!token) {
-    token = new GenzeeToken(event.params.tokenId.toString());
-    token.tokenID = event.params.tokenId;
-    token.oddxClaimed = BigInt.zero();
-  }
-
+  let token = loadOrCreateGenzee(event.params.tokenId);
   token.owner = event.params.to.toHexString();
   token.save();
 

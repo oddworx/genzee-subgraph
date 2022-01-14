@@ -1,5 +1,6 @@
 import { Transfer } from "../generated/Genzee/Genzee";
-import { GenzeeToken, User } from "../generated/schema";
+import { GenzeeToken } from "../generated/schema";
+import { loadOrCreateUser } from "./common";
 
 export function handleTransfer(event: Transfer): void {
   let token = GenzeeToken.load(event.params.tokenId.toString());
@@ -11,12 +12,7 @@ export function handleTransfer(event: Transfer): void {
   token.owner = event.params.to.toHexString();
   token.save();
 
-  let userTo = User.load(event.params.to.toHexString());
-
-  if (!userTo) {
-    userTo = new User(event.params.to.toHexString());
-  }
-
+  let userTo = loadOrCreateUser(event.params.to.toHexString());
   userTo.genzeeBalance++;
   userTo.save();
 
@@ -27,11 +23,7 @@ export function handleTransfer(event: Transfer): void {
     return;
   }
 
-  let userFrom = User.load(event.params.from.toHexString());
-  if (!userFrom) {
-    userFrom = new User(event.params.from.toHexString());
-  }
-
+  let userFrom = loadOrCreateUser(event.params.from.toHexString());
   userFrom.genzeeBalance--;
   userFrom.save();
 }

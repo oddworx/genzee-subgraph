@@ -4,16 +4,11 @@ import {
   UnstakedNft,
   UserClaimedNftRewards,
 } from "../generated/Oddworx/Oddworx";
-import { loadGenzeeStats } from "./common";
-import { GenzeeToken, User } from "../generated/schema";
+import { loadGenzeeStats, loadOrCreateUser } from "./common";
+import { GenzeeToken } from "../generated/schema";
 
 export function handleTransfer(event: Transfer): void {
-  let userTo = User.load(event.params.to.toHexString());
-
-  if (!userTo) {
-    userTo = new User(event.params.to.toHexString());
-  }
-
+  let userTo = loadOrCreateUser(event.params.to.toHexString());
   userTo.oddxBalance = userTo.oddxBalance.plus(event.params.amount);
   userTo.save();
 
@@ -24,11 +19,7 @@ export function handleTransfer(event: Transfer): void {
     return;
   }
 
-  let userFrom = User.load(event.params.from.toHexString());
-  if (!userFrom) {
-    userFrom = new User(event.params.from.toHexString());
-  }
-
+  let userFrom = loadOrCreateUser(event.params.from.toHexString());
   userFrom.oddxBalance = userFrom.oddxBalance.minus(event.params.amount);
   userFrom.save();
 }

@@ -44,4 +44,8 @@ export function handleUnstake(event: UnstakedNft): void {
   stats.save();
 }
 
-export function handleClaim(event: UserClaimedNftRewards): void {}
+export function handleClaim(event: UserClaimedNftRewards): void {
+  let stats = loadGenzeeStats();
+  stats.totalOddxClaimed = stats.totalOddxClaimed.plus(event.params.amount);
+  stats.save();
+}

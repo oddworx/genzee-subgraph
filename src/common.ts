@@ -11,6 +11,7 @@ export const loadGenzeeStats: () => GenzeeStats = () => {
     stats = new GenzeeStats("v1");
     stats.totalGenzeesStaked = 0;
     stats.totalGenzeeOwners = 0;
+    stats.totalOddxClaimed = BigInt.zero();
   }
   return stats;
 };

@@ -17,4 +17,5 @@ type GenzeeStats @entity {
   id: ID!
   totalGenzeesStaked: Int!
   totalGenzeeOwners: Int!
+  totalOddxClaimed: BigInt!
 }

@@ -62,3 +62,7 @@ npm run build
 ```console
 npm run deploy
 ```
+
+### License
+
+[MIT](LICENSE)

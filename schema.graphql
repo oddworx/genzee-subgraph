@@ -2,6 +2,7 @@ type GenzeeToken @entity {
   id: ID!
   tokenID: BigInt!
   owner: User!
+  stakedAt: BigInt
 }
 
 type User @entity {

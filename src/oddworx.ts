@@ -32,7 +32,11 @@ export function handleTransfer(event: Transfer): void {
   userFrom.save();
 }
 
-export function handleStake(event: StakedNft): void {}
+export function handleStake(event: StakedNft): void {
+  let token = GenzeeToken.load(event.params.genzee.toString());
+  token!.stakedAt = event.block.timestamp;
+  token!.save();
+}
 
 export function handleUnstake(event: UnstakedNft): void {}
 

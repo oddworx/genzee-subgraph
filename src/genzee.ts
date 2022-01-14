@@ -1,3 +1,4 @@
+import { BigInt } from "@graphprotocol/graph-ts";
 import { Transfer } from "../generated/Genzee/Genzee";
 import { GenzeeToken } from "../generated/schema";
 import {
@@ -22,6 +23,7 @@ export function handleTransfer(event: Transfer): void {
   if (!token) {
     token = new GenzeeToken(event.params.tokenId.toString());
     token.tokenID = event.params.tokenId;
+    token.oddxClaimed = BigInt.zero();
   }
 
   token.owner = event.params.to.toHexString();

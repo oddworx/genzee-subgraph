@@ -16,7 +16,7 @@ dataSources:
       entities:
         - GenzeeToken
         - User
-        - GenzeeStats
+        - GenzeeInfo
       abis:
         - name: Genzee
           file: ./abis/Genzee.json
@@ -38,7 +38,7 @@ dataSources:
       entities:
         - GenzeeToken
         - User
-        - GenzeeStats
+        - GenzeeInfo
       abis:
         - name: Oddworx
           file: ./abis/Oddworx.json

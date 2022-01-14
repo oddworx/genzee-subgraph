@@ -11,3 +11,9 @@ type User @entity {
   genzeeBalance: Int!
   oddxBalance: BigInt!
 }
+
+type GenzeeStats @entity {
+  # There will be only 1 entity named v1
+  id: ID!
+  totalGenzeesStaked: Int!
+}

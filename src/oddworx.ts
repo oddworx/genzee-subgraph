@@ -4,6 +4,7 @@ import {
   UnstakedNft,
   UserClaimedNftRewards,
 } from "../generated/Oddworx/Oddworx";
+import { loadGenzeeStats } from "./common";
 import { GenzeeToken, User } from "../generated/schema";
 
 export function handleTransfer(event: Transfer): void {
@@ -36,12 +37,20 @@ export function handleStake(event: StakedNft): void {
   let token = GenzeeToken.load(event.params.genzee.toString());
   token!.stakedAt = event.block.timestamp;
   token!.save();
+
+  let stats = loadGenzeeStats();
+  stats.totalGenzeesStaked++;
+  stats.save();
 }
 
 export function handleUnstake(event: UnstakedNft): void {
   let token = GenzeeToken.load(event.params.genzee.toString());
   token!.stakedAt = null;
   token!.save();
+
+  let stats = loadGenzeeStats();
+  stats.totalGenzeesStaked--;
+  stats.save();
 }
 
 export function handleClaim(event: UserClaimedNftRewards): void {}

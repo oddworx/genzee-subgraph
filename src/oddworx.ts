@@ -58,6 +58,8 @@ export function handleClaim(event: UserClaimedNftRewards): void {
   token!.oddxClaimed = token!.oddxClaimed.plus(event.params.amount);
   if (!token!.stakedAt) {
     token!.latestUnstakedClaim = event.block.timestamp;
+  } else {
+    token!.stakedAt = event.block.timestamp;
   }
   token!.save();
 }

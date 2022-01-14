@@ -37,6 +37,7 @@ export function handleStake(event: StakedNft): void {
 export function handleUnstake(event: UnstakedNft): void {
   let token = GenzeeToken.load(event.params.genzee.toString());
   token!.stakedAt = null;
+  token!.latestUnstakedClaim = event.block.timestamp;
   token!.save();
 
   let stats = loadGenzeeStats();
@@ -55,5 +56,8 @@ export function handleClaim(event: UserClaimedNftRewards): void {
 
   let token = GenzeeToken.load(event.params.genzee.toString());
   token!.oddxClaimed = token!.oddxClaimed.plus(event.params.amount);
+  if (!token!.stakedAt) {
+    token!.latestUnstakedClaim = event.block.timestamp;
+  }
   token!.save();
 }

@@ -22,6 +22,7 @@ export const loadOrCreateGenzee: (id: BigInt) => GenzeeToken = (id) => {
     token = new GenzeeToken(id.toString());
     token.tokenID = id;
     token.oddxClaimed = BigInt.zero();
+    token.latestUnstakedClaim = BigInt.zero();
   }
   return token;
 };

@@ -3,6 +3,7 @@ type GenzeeToken @entity {
   tokenID: BigInt!
   owner: User!
   stakedAt: BigInt
+  latestUnstakedClaim: BigInt!
   oddxClaimed: BigInt!
 }
 

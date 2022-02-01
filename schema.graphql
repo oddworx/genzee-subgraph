@@ -1,7 +1,9 @@
-type GenzeeToken @entity {
+type Nft @entity {
   id: ID!
   tokenID: BigInt!
   owner: User!
+
+  contractAddress: String!
 
   # stakedAt records when the genzee was staked.
   # If stakedAt is null, the genzee is not staked.
@@ -21,7 +23,7 @@ type GenzeeToken @entity {
 
 type User @entity {
   id: ID!
-  tokens: [GenzeeToken!]! @derivedFrom(field: "owner")
+  tokens: [Nft!]! @derivedFrom(field: "owner")
 
   # how many genzees this user owns
   genzeeBalance: Int!
@@ -33,15 +35,14 @@ type User @entity {
   oddxClaimed: BigInt!
 }
 
-type GenzeeInfo @entity {
-  # There will be only 1 entity named v1
+type ContractInfo @entity {
   id: ID!
 
   # total amount of genzees staked
-  totalGenzeesStaked: Int!
+  totalStaked: Int!
 
   # real owner count of genzees (staking messes with the contract balanceOf)
-  totalGenzeeOwners: Int!
+  totalOwners: Int!
 
   # total amount of oddx that were claimed
   totalOddxClaimed: BigInt!

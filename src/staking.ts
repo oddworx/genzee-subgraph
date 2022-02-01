@@ -1,50 +1,35 @@
 import {
-  Transfer,
   StakedNft,
   UnstakedNft,
-  UserClaimedNftRewards,
-} from "../generated/Oddworx/Oddworx";
+  UserClaimedRewards,
+} from "../generated/Staking/OddworxStaking";
 import {
-  blackhole,
-  genzeeContractAddress,
   loadOrCreateContractStats,
   loadOrCreateNft,
   loadOrCreateUser,
 } from "./common";
 
-export function handleTransfer(event: Transfer): void {
-  let userTo = loadOrCreateUser(event.params.to.toHexString());
-  userTo.oddxBalance = userTo.oddxBalance.plus(event.params.amount);
-  userTo.save();
-
-  if (event.params.from.toHexString() == blackhole) {
-    return;
-  }
-
-  let userFrom = loadOrCreateUser(event.params.from.toHexString());
-  userFrom.oddxBalance = userFrom.oddxBalance.minus(event.params.amount);
-  userFrom.save();
-}
-
 export function handleStake(event: StakedNft): void {
   let token = loadOrCreateNft(
-    event.params.genzee,
-    genzeeContractAddress,
+    event.params.nftId,
+    event.params.nftContract.toHexString().toLowerCase(),
     event.params.user.toHexString()
   );
 
   token.stakedAt = event.block.timestamp;
   token.save();
 
-  let stats = loadOrCreateContractStats(genzeeContractAddress);
+  let stats = loadOrCreateContractStats(
+    event.params.nftContract.toHexString().toLowerCase()
+  );
   stats.totalStaked++;
   stats.save();
 }
 
 export function handleUnstake(event: UnstakedNft): void {
   let token = loadOrCreateNft(
-    event.params.genzee,
-    genzeeContractAddress,
+    event.params.nftId,
+    event.params.nftContract.toHexString().toLowerCase(),
     event.params.user.toHexString()
   );
 
@@ -52,13 +37,17 @@ export function handleUnstake(event: UnstakedNft): void {
   token.latestUnstakedClaim = event.block.timestamp;
   token.save();
 
-  let stats = loadOrCreateContractStats(genzeeContractAddress);
+  let stats = loadOrCreateContractStats(
+    event.params.nftContract.toHexString().toLowerCase()
+  );
   stats.totalStaked--;
   stats.save();
 }
 
-export function handleClaim(event: UserClaimedNftRewards): void {
-  let stats = loadOrCreateContractStats(genzeeContractAddress);
+export function handleClaim(event: UserClaimedRewards): void {
+  let stats = loadOrCreateContractStats(
+    event.params.nftContract.toHexString().toLowerCase()
+  );
   stats.totalOddxClaimed = stats.totalOddxClaimed.plus(event.params.amount);
   stats.save();
 
@@ -67,8 +56,8 @@ export function handleClaim(event: UserClaimedNftRewards): void {
   user.save();
 
   let token = loadOrCreateNft(
-    event.params.genzee,
-    genzeeContractAddress,
+    event.params.nftId,
+    event.params.nftContract.toHexString().toLowerCase(),
     event.params.user.toHexString()
   );
   token.oddxClaimed = token.oddxClaimed.plus(event.params.amount);

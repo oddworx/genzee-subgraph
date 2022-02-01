@@ -1,43 +1,52 @@
 import { Transfer } from "../generated/Genzee/Genzee";
 import {
-  loadGenzeeStats,
-  loadOrCreateGenzee,
+  blackhole,
+  genzeeContractAddress,
+  loadOrCreateContractStats,
+  loadOrCreateNft,
   loadOrCreateUser,
   oddxContractAddress,
+  oddxStakingContractAddress,
 } from "./common";
+
+const ignoreTransfer: (event: Transfer) => bool = (event) => {
+  return (
+    event.params.from.toHexString() == oddxContractAddress.toLowerCase() ||
+    event.params.from.toHexString() ==
+      oddxStakingContractAddress.toLowerCase() ||
+    event.params.to.toHexString() == oddxContractAddress.toLowerCase() ||
+    event.params.to.toHexString() == oddxStakingContractAddress.toLowerCase()
+  );
+};
 
 export function handleTransfer(event: Transfer): void {
   // Skip this fn if transfering from or to ODDX.
   // This means it's unstaking or staking which is handled on oddworx.ts
-  if (
-    event.params.to.toHexString().toLowerCase() ==
-      oddxContractAddress.toLowerCase() ||
-    event.params.from.toHexString().toLowerCase() ==
-      oddxContractAddress.toLowerCase()
-  ) {
+  if (ignoreTransfer(event)) {
     return;
   }
 
-  let token = loadOrCreateGenzee(event.params.tokenId);
+  let token = loadOrCreateNft(
+    event.params.tokenId,
+    genzeeContractAddress,
+    event.params.to.toHexString()
+  );
   token.owner = event.params.to.toHexString();
   token.save();
 
-  let stats = loadGenzeeStats();
+  let stats = loadOrCreateContractStats(genzeeContractAddress);
 
   let userTo = loadOrCreateUser(event.params.to.toHexString());
 
   if (userTo.genzeeBalance == 0) {
-    stats.totalGenzeeOwners++;
+    stats.totalOwners++;
     stats.save();
   }
 
   userTo.genzeeBalance++;
   userTo.save();
 
-  if (
-    event.params.from.toHexString() ==
-    "0x0000000000000000000000000000000000000000"
-  ) {
+  if (event.params.from.toHexString() == blackhole) {
     return;
   }
 
@@ -45,7 +54,7 @@ export function handleTransfer(event: Transfer): void {
   userFrom.genzeeBalance--;
 
   if (userFrom.genzeeBalance == 0) {
-    stats.totalGenzeeOwners--;
+    stats.totalOwners--;
     stats.save();
   }
 

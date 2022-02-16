@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: Genzee
-    network: rinkeby
+    network: mainnet
     source:
-      address: "0x437C88DaA2C743CEa3B6337e8bEd2035405C5bdf"
+      address: "0x201675fBFAAAC3A51371E4C31FF73Ac14ceE2A5A"
       abi: Genzee
-      startBlock: 9956927
+      startBlock: 13411741
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -26,11 +26,11 @@ dataSources:
       file: ./src/genzee.ts
   - kind: ethereum
     name: Oddworx
-    network: rinkeby
+    network: mainnet
     source:
-      address: "0x8105Ecd044887b22ae21ef9070f54171df88Cd4b"
+      address: "0x4095547F958593B5431C0306e81df4293991d5B3"
       abi: Oddworx
-      startBlock: 9964879
+      startBlock: 13986869
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -54,11 +54,11 @@ dataSources:
       file: ./src/oddworx.ts
   - kind: ethereum
     name: OddworxStaking
-    network: rinkeby
+    network: mainnet
     source:
-      address: "0x135f1f45295d29cc869cdBB0EC2e404888633b51"
+      address: "0x428b6a13277116C62D751bebbC6f47011A0Cdc11"
       abi: OddworxStaking
-      startBlock: 10091699
+      startBlock: 14200370
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5

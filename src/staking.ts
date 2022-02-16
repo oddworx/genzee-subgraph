@@ -2,7 +2,7 @@ import {
   StakedNft,
   UnstakedNft,
   UserClaimedRewards,
-} from "../generated/Staking/OddworxStaking";
+} from "../generated/OddworxStaking/OddworxStaking";
 import {
   loadOrCreateContractStats,
   loadOrCreateNft,

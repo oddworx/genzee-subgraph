@@ -4,18 +4,18 @@ import { ContractInfo, Nft, User } from "../generated/schema";
 export const blackhole = "0x0000000000000000000000000000000000000000";
 
 // Mainnet
-// export const genzeeContractAddress =
-//   "0x201675fBFAAAC3A51371E4C31FF73Ac14ceE2A5A";
-// export const oddxContractAddress = "0x4095547F958593B5431C0306e81df4293991d5B3";
-// export const oddxStakingContractAddress = ""
+export const genzeeContractAddress =
+  "0x201675fBFAAAC3A51371E4C31FF73Ac14ceE2A5A".toLowerCase();
+export const oddxContractAddress = "0x4095547F958593B5431C0306e81df4293991d5B3".toLowerCase();
+export const oddxStakingContractAddress = "0x428b6a13277116C62D751bebbC6f47011A0Cdc11".toLowerCase();
 
 // Rinkeby
-export const genzeeContractAddress =
-  "0x437C88DaA2C743CEa3B6337e8bEd2035405C5bdf".toLowerCase();
-export const oddxContractAddress =
-  "0x8105Ecd044887b22ae21ef9070f54171df88Cd4b".toLowerCase();
-export const oddxStakingContractAddress =
-  "0x135f1f45295d29cc869cdBB0EC2e404888633b51".toLowerCase();
+// export const genzeeContractAddress =
+//   "0x437C88DaA2C743CEa3B6337e8bEd2035405C5bdf".toLowerCase();
+// export const oddxContractAddress =
+//   "0x8105Ecd044887b22ae21ef9070f54171df88Cd4b".toLowerCase();
+// export const oddxStakingContractAddress =
+//   "0x135f1f45295d29cc869cdBB0EC2e404888633b51".toLowerCase();
 
 export const loadOrCreateContractStats: (
   contractAddress: string

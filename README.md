@@ -1,44 +1,10 @@
-# Genzee Subgraph
+# Oddworx Subgraph
 
-You can use this subgraph to query all kinds of information about genzees and genzee owners. For instance, you can calculate rewards, see the real owner count, and how many genzees are staked.
+You can use this subgraph to query all kinds of information about Oddworx projects. Some of the projects covered in this graph is Genzee, Oddx Token and other NFTs created by Alex Solis and Naolito on nifty gateway.
 
-Try using one of the queries below in the playground.
+### Playground
 
 https://thegraph.com/hosted-service/subgraph/alephao/genzee
-
-### Example Queries
-
-#### Get genzee stats
-
-```graphql
-{
-  genzeeInfo(id: "v1") {
-    totalGenzeeOwners
-    totalGenzeesStaked
-    totalOddxClaimed
-  }
-}
-```
-
-#### All info of a wallet
-
-This includes all genzees of the wallet and all info for the genzees.
-
-```graphql
-{
-  user(id: "your_address_lowercased") {
-    genzeeBalance
-    oddxBalance
-    oddxClaimed
-    tokens {
-      id
-      stakedAt
-      oddxClaimed
-      latestUnstakedClaim
-    }
-  }
-}
-```
 
 ### Contributing
 

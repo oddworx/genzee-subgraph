@@ -73,7 +73,7 @@ dataSources:
       eventHandlers:
         - event: StakedNft(indexed address,indexed address,indexed uint256)
           handler: handleStake
-        - event: UnstakedNft(indexed address,indexed address,indexed uint256)
+        - event: UnstakedNft(indexed address,indexed address,indexed uint256,address)
           handler: handleUnstake
         - event: UserClaimedRewards(indexed address,indexed address,indexed uint256,uint256)
           handler: handleClaim

@@ -474,6 +474,11 @@
         "name": "nftId",
         "type": "uint256",
         "indexed": true
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "indexed": false
       }
     ],
     "anonymous": false

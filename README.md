@@ -23,6 +23,12 @@ npm run codegen
 npm run build
 ```
 
+### Running a local graph-node
+
+1. Start a local chain by following instructions in [https://github.com/oddworx/contracts-flatten]
+2. Clone this repo and run `docker compose up`
+3. Run `yarn create:local` and `yarn deploy:local`
+
 ### Deploying
 
 ```console

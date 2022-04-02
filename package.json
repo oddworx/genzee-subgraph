@@ -1,13 +1,14 @@
 {
-  "name": "Genzee",
-  "license": "UNLICENSED",
   "scripts": {
-    "codegen": "graph codegen",
-    "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee",
-    "create-local": "graph create --node http://localhost:8020/ alephao/Genzee",
-    "remove-local": "graph remove --node http://localhost:8020/ alephao/Genzee",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee",
+    "codegen:mainnet": "graph codegen subgraph.mainnet.yaml",
+    "build:mainnet": "graph build subgraph.mainnet.yaml",
+    "deploy:mainnet": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee subgraph.mainnet.yaml",
+    "codegen:rinkeby": "graph codegen subgraph.rinkeby.yaml",
+    "build:rinkeby": "graph build subgraph.rinkeby.yaml",
+    "deploy:rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee-Rinkeby subgraph.rinkeby.yaml",
+    "create:local": "graph create --node http://localhost:8020/ alephao/Genzee",
+    "remove:local": "graph remove --node http://localhost:8020/ alephao/Genzee",
+    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee",
     "test": "graph test",
     "format": "prettier . -w",
     "prepare": "husky install"

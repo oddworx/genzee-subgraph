@@ -509,20 +509,5 @@
       }
     ],
     "anonymous": false
-  },
-  {
-    "type": "error",
-    "name": "InvalidInput",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "NotAdmin",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "NotOwnerOfToken",
-    "inputs": []
   }
 ]

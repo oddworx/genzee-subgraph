@@ -11,36 +11,6 @@
     "type": "constructor"
   },
   {
-    "inputs": [],
-    "name": "ContractIsPaused",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "InvalidInput",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NftHoldRewardsNotActive",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NoTokensToClaim",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotAdmin",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotOwnerOfToken",
-    "type": "error"
-  },
-  {
     "anonymous": false,
     "inputs": [
       {

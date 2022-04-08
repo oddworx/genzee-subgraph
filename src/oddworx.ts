@@ -33,6 +33,7 @@ export function handleStake(event: StakedNft): void {
     event.params.user.toHexString()
   );
 
+  token.legacyStake = true;
   token.stakedAt = event.block.timestamp;
   token.save();
 
@@ -49,6 +50,7 @@ export function handleUnstake(event: UnstakedNft): void {
   );
 
   token.stakedAt = null;
+  token.legacyStake = false;
   token.latestUnstakedClaim = event.block.timestamp;
   token.save();
 

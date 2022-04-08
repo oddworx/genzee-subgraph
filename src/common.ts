@@ -39,6 +39,7 @@ export const loadOrCreateNft: (
     token.oddxClaimed = BigInt.zero();
     token.latestUnstakedClaim = BigInt.zero();
     token.owner = owner;
+    token.legacyStake = false;
   }
   return token;
 };

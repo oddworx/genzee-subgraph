@@ -11,6 +11,8 @@ type Nft @entity {
   # (20 * (currentTimestamp - stakedAt)) / 1 week
   stakedAt: BigInt
 
+  legacyStake: Boolean!
+
   # latestUnstakedClaim helps calculating unstaked rewards
   # (10 * (currentTimestamp - latestUnstakedClaim)) / 1 week
   # it resets when the genzee is unstaked and when oddx are claimed

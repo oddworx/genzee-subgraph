@@ -1,7 +1,7 @@
 version: "3"
 services:
   graph-node:
-    image: graphprotocol/graph-node
+    image: graphprotocol/graph-node:8470ba1
     ports:
       - "8000:8000"
       - "8001:8001"
@@ -21,6 +21,7 @@ services:
       ipfs: "ipfs:5001"
       ethereum: "local:http://host.docker.internal:8545"
       GRAPH_LOG: info
+      GRAPH_MAX_API_VERSION: "0.0.6"
   ipfs:
     image: ipfs/go-ipfs:v0.4.23
     ports:

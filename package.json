@@ -2,14 +2,14 @@
   "scripts": {
     "codegen:mainnet": "graph codegen --network mainnet",
     "build:mainnet": "graph build --network mainnet",
-    "deploy:mainnet": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee --network mainnet",
+    "deploy:mainnet": "yarn codegen:mainnet && graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee --network mainnet",
     "codegen:rinkeby": "graph codegen --network rinkeby",
     "build:rinkeby": "graph build --network rinkeby",
-    "deploy:rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee-Rinkeby --network rinkeby",
+    "deploy:rinkeby": "yarn codegen:rinkeby && graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee-Rinkeby --network rinkeby",
     "codegen:local": "graph codegen subgraph.local.yaml",
     "create:local": "graph create --node http://localhost:8020/ alephao/Genzee --network local",
     "remove:local": "graph remove --node http://localhost:8020/ alephao/Genzee --network local",
-    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee --network local",
+    "deploy:local": "yarn codegen:local && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee --network local",
     "test": "graph test",
     "format": "prettier . -w",
     "prepare": "husky install"

@@ -6,16 +6,17 @@
     "codegen:rinkeby": "graph codegen subgraph.rinkeby.yaml",
     "build:rinkeby": "graph build subgraph.rinkeby.yaml",
     "deploy:rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee-Rinkeby subgraph.rinkeby.yaml",
-    "create:local": "graph create --node http://localhost:8020/ alephao/Genzee",
-    "remove:local": "graph remove --node http://localhost:8020/ alephao/Genzee",
-    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee",
+    "codegen:local": "graph codegen subgraph.local.yaml",
+    "create:local": "graph create --node http://localhost:8020/ alephao/Genzee subgraph.local.yaml",
+    "remove:local": "graph remove --node http://localhost:8020/ alephao/Genzee subgraph.local.yaml",
+    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee subgraph.local.yaml",
     "test": "graph test",
     "format": "prettier . -w",
     "prepare": "husky install"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.25.1",
-    "@graphprotocol/graph-ts": "0.24.1"
+    "@graphprotocol/graph-cli": "^0.29.0",
+    "@graphprotocol/graph-ts": "^0.26.0"
   },
   "devDependencies": {
     "husky": "^7.0.4",

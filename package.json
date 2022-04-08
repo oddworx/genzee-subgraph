@@ -1,21 +1,21 @@
 {
   "scripts": {
-    "codegen:mainnet": "graph codegen subgraph.mainnet.yaml",
-    "build:mainnet": "graph build subgraph.mainnet.yaml",
-    "deploy:mainnet": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee subgraph.mainnet.yaml",
-    "codegen:rinkeby": "graph codegen subgraph.rinkeby.yaml",
-    "build:rinkeby": "graph build subgraph.rinkeby.yaml",
-    "deploy:rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee-Rinkeby subgraph.rinkeby.yaml",
+    "codegen:mainnet": "graph codegen --network mainnet",
+    "build:mainnet": "graph build --network mainnet",
+    "deploy:mainnet": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee --network mainnet",
+    "codegen:rinkeby": "graph codegen --network rinkeby",
+    "build:rinkeby": "graph build --network rinkeby",
+    "deploy:rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee-Rinkeby --network rinkeby",
     "codegen:local": "graph codegen subgraph.local.yaml",
-    "create:local": "graph create --node http://localhost:8020/ alephao/Genzee subgraph.local.yaml",
-    "remove:local": "graph remove --node http://localhost:8020/ alephao/Genzee subgraph.local.yaml",
-    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee subgraph.local.yaml",
+    "create:local": "graph create --node http://localhost:8020/ alephao/Genzee --network local",
+    "remove:local": "graph remove --node http://localhost:8020/ alephao/Genzee --network local",
+    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee --network local",
     "test": "graph test",
     "format": "prettier . -w",
     "prepare": "husky install"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "^0.29.0",
+    "@graphprotocol/graph-cli": "https://github.com/alephao/graph-cli#b85ed6da840fa61a97d7adcfcadeef2b36b188ff",
     "@graphprotocol/graph-ts": "^0.26.0"
   },
   "devDependencies": {

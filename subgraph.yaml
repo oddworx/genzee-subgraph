@@ -79,3 +79,25 @@ dataSources:
             uint256,uint256)
           handler: handleClaim
       file: ./src/staking.ts
+  - kind: ethereum
+    name: FoodzPartyV2
+    network: mainnet
+    source:
+      abi: FoodzPartyV2
+      address: "0xa0fa51F54dbab68C068a2E2c62AA72Fe334D9b09"
+      startBlock: 14672865
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Nft
+        - User
+        - ContractInfo
+      abis:
+        - name: FoodzPartyV2
+          file: ./abis/FoodzPartyV2.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/foodz.ts

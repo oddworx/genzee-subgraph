@@ -11,6 +11,10 @@
     "OddworxStaking": {
       "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
       "startBlock": 0
+    },
+    "FoodzPartyV2": {
+      "address": "0x1234000000000000000000000000000000000000",
+      "startBlock": 0
     }
   },
   "rinkeby": {
@@ -25,6 +29,10 @@
     "OddworxStaking": {
       "address": "0x135f1f45295d29cc869cdBB0EC2e404888633b51",
       "startBlock": 10091699
+    },
+    "FoodzPartyV2": {
+      "address": "0x1234000000000000000000000000000000000000",
+      "startBlock": 10091700
     }
   },
   "mainnet": {
@@ -39,6 +47,10 @@
     "OddworxStaking": {
       "address": "0x428b6a13277116C62D751bebbC6f47011A0Cdc11",
       "startBlock": 14200370
+    },
+    "FoodzPartyV2": {
+      "address": "0xa0fa51F54dbab68C068a2E2c62AA72Fe334D9b09",
+      "startBlock": 14672865
     }
   }
 }

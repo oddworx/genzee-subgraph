@@ -18,6 +18,10 @@ test("Mainnet Addresses", () => {
     "0x428b6a13277116c62d751bebbc6f47011a0cdc11",
     addresses.staking
   );
+  assert.stringEquals(
+    "0xa0fa51F54dbab68C068a2E2c62AA72Fe334D9b09",
+    addresses.foodz
+  );
   dataSourceMock.resetValues();
 });
 
@@ -36,6 +40,10 @@ test("Rinkeby Addresses", () => {
     addresses.staking,
     "0x135f1f45295d29cc869cdbb0ec2e404888633b51"
   );
+  assert.stringEquals(
+    "0x1234000000000000000000000000000000000000",
+    addresses.foodz
+  );
   dataSourceMock.resetValues();
 });
 
@@ -53,6 +61,10 @@ test("Local Addresses", () => {
   assert.stringEquals(
     addresses.staking,
     "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+  );
+  assert.stringEquals(
+    "0x1234000000000000000000000000000000000000",
+    addresses.foodz
   );
   dataSourceMock.resetValues();
 });

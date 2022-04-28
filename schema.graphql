@@ -30,6 +30,9 @@ type User @entity {
   # how many genzees this user owns
   genzeeBalance: Int!
 
+  # howm many foodz this user owns
+  foodzBalance: Int!
+
   # how many oddx this user owns
   oddxBalance: BigInt!
 

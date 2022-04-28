@@ -1,3 +1,4 @@
+import { dataSource } from "@graphprotocol/graph-ts";
 import {
   Transfer,
   StakedNft,
@@ -6,7 +7,7 @@ import {
 } from "../generated/Oddworx/Oddworx";
 import {
   blackhole,
-  genzeeContractAddress,
+  contractAddresses,
   loadOrCreateContractStats,
   loadOrCreateNft,
   loadOrCreateUser,
@@ -27,9 +28,10 @@ export function handleTransfer(event: Transfer): void {
 }
 
 export function handleStake(event: StakedNft): void {
+  const addresses = contractAddresses();
   let token = loadOrCreateNft(
     event.params.genzee,
-    genzeeContractAddress,
+    addresses.genzee,
     event.params.user.toHexString()
   );
 
@@ -37,15 +39,16 @@ export function handleStake(event: StakedNft): void {
   token.stakedAt = event.block.timestamp;
   token.save();
 
-  let stats = loadOrCreateContractStats(genzeeContractAddress);
+  let stats = loadOrCreateContractStats(addresses.genzee);
   stats.totalStaked++;
   stats.save();
 }
 
 export function handleUnstake(event: UnstakedNft): void {
+  const addresses = contractAddresses();
   let token = loadOrCreateNft(
     event.params.genzee,
-    genzeeContractAddress,
+    addresses.genzee,
     event.params.user.toHexString()
   );
 
@@ -54,13 +57,14 @@ export function handleUnstake(event: UnstakedNft): void {
   token.latestUnstakedClaim = event.block.timestamp;
   token.save();
 
-  let stats = loadOrCreateContractStats(genzeeContractAddress);
+  let stats = loadOrCreateContractStats(addresses.genzee);
   stats.totalStaked--;
   stats.save();
 }
 
 export function handleClaim(event: UserClaimedNftRewards): void {
-  let stats = loadOrCreateContractStats(genzeeContractAddress);
+  const addresses = contractAddresses();
+  let stats = loadOrCreateContractStats(addresses.genzee);
   stats.totalOddxClaimed = stats.totalOddxClaimed.plus(event.params.amount);
   stats.save();
 
@@ -70,7 +74,7 @@ export function handleClaim(event: UserClaimedNftRewards): void {
 
   let token = loadOrCreateNft(
     event.params.genzee,
-    genzeeContractAddress,
+    addresses.genzee,
     event.params.user.toHexString()
   );
   token.oddxClaimed = token.oddxClaimed.plus(event.params.amount);

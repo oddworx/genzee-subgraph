@@ -1,15 +1,38 @@
-import { BigInt } from "@graphprotocol/graph-ts";
+import { BigInt, dataSource } from "@graphprotocol/graph-ts";
 import { ContractInfo, Nft, User } from "../generated/schema";
-import {
-  GenzeeAddress,
-  OddworxAddress,
-  OddworxStakingAddress,
-} from "../generated/addresses";
 
 export const blackhole = "0x0000000000000000000000000000000000000000";
-export const genzeeContractAddress = GenzeeAddress.toLowerCase();
-export const oddxContractAddress = OddworxAddress.toLowerCase();
-export const oddxStakingContractAddress = OddworxStakingAddress.toLowerCase();
+
+export class ContractAddresses {
+  constructor(
+    public genzee: string,
+    public oddx: string,
+    public staking: string
+  ) {}
+}
+
+export const contractAddresses: () => ContractAddresses = () => {
+  const network = dataSource.network();
+  if (network == "mainnet")
+    return new ContractAddresses(
+      "0x201675fBFAAAC3A51371E4C31FF73Ac14ceE2A5A".toLowerCase(),
+      "0x4095547F958593B5431C0306e81df4293991d5B3".toLowerCase(),
+      "0x428b6a13277116C62D751bebbC6f47011A0Cdc11".toLowerCase()
+    );
+
+  if (network == "rinkeby")
+    return new ContractAddresses(
+      "0x437C88DaA2C743CEa3B6337e8bEd2035405C5bdf".toLowerCase(),
+      "0x8105Ecd044887b22ae21ef9070f54171df88Cd4b".toLowerCase(),
+      "0x135f1f45295d29cc869cdBB0EC2e404888633b51".toLowerCase()
+    );
+
+  return new ContractAddresses(
+    "0x5FbDB2315678afecb367f032d93F642f64180aa3".toLowerCase(),
+    "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512".toLowerCase(),
+    "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0".toLowerCase()
+  );
+};
 
 export const loadOrCreateContractStats: (
   contractAddress: string

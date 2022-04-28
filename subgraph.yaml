@@ -4,14 +4,14 @@ schema:
 dataSources:
   - kind: ethereum
     name: Genzee
-    network: local
+    network: mainnet
     source:
       abi: Genzee
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
-      startBlock: 0
+      address: "0x201675fBFAAAC3A51371E4C31FF73Ac14ceE2A5A"
+      startBlock: 13411741
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Nft
@@ -26,14 +26,14 @@ dataSources:
       file: ./src/genzee.ts
   - kind: ethereum
     name: Oddworx
-    network: local
+    network: mainnet
     source:
       abi: Oddworx
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
-      startBlock: 0
+      address: "0x4095547F958593B5431C0306e81df4293991d5B3"
+      startBlock: 13986869
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Nft
@@ -54,14 +54,14 @@ dataSources:
       file: ./src/oddworx.ts
   - kind: ethereum
     name: OddworxStaking
-    network: local
+    network: mainnet
     source:
       abi: OddworxStaking
-      address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0"
-      startBlock: 0
+      address: "0x428b6a13277116C62D751bebbC6f47011A0Cdc11"
+      startBlock: 14200370
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Nft

@@ -206,10 +206,10 @@
     "@ethersproject/properties" "^5.6.0"
     "@ethersproject/strings" "^5.6.0"
 
-"@graphprotocol/graph-cli@https://github.com/alephao/graph-cli#b85ed6da840fa61a97d7adcfcadeef2b36b188ff", "@graphprotocol/graph-cli@https://github.com/alephao/graph-cli#main":
-  version "0.30.0-alpha.0"
-  uid b85ed6da840fa61a97d7adcfcadeef2b36b188ff
-  resolved "https://github.com/alephao/graph-cli#b85ed6da840fa61a97d7adcfcadeef2b36b188ff"
+"@graphprotocol/graph-cli@^0.29.0":
+  version "0.29.0"
+  resolved "https://registry.yarnpkg.com/@graphprotocol/graph-cli/-/graph-cli-0.29.0.tgz#bf723ea95736462684eca8a816934800aa467148"
+  integrity sha512-bO7dVqVfPXwtXqTHO8NHyWafJQ+Umdom5DrXXlWbSUoZYHpNQ+gIPQM91kLxY9JouL/lrSu79zRsC0+ynlRhdA==
   dependencies:
     assemblyscript "0.19.10"
     binary-install-raw "0.0.13"
@@ -3216,7 +3216,7 @@ slice-ansi@^5.0.0:
     ansi-styles "^6.0.0"
     is-fullwidth-code-point "^4.0.0"
 
-source-map-support@^0.5.20:
+source-map-support@^0.5.20, source-map-support@^0.5.21:
   version "0.5.21"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.21.tgz#04fe7c7f9e1ed2d662233c28cb2b35b9f63f6e4f"
   integrity sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==

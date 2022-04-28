@@ -1,24 +1,23 @@
 {
   "scripts": {
-    "codegen:mainnet": "graph codegen --network mainnet subgraph.mainnet.yaml",
-    "build:mainnet": "graph build --network mainnet subgraph.mainnet.yaml",
-    "deploy:mainnet": "yarn codegen:mainnet && graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee --network mainnet subgraph.mainnet.yaml",
-    "codegen:rinkeby": "graph codegen --network rinkeby",
+    "codegen": "graph codegen",
+    "build:mainnet": "graph build --network mainnet",
+    "deploy:mainnet": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee --network mainnet",
     "build:rinkeby": "graph build --network rinkeby",
-    "deploy:rinkeby": "yarn codegen:rinkeby && graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee-Rinkeby --network rinkeby",
-    "codegen:local": "graph codegen --network local subgraph.local.yaml",
-    "create:local": "graph create --node http://localhost:8020/ alephao/Genzee --network local subgraph.local.yaml",
+    "deploy:rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ alephao/Genzee-Rinkeby --network rinkeby",
+    "create:local": "graph create --node http://localhost:8020/ alephao/Genzee --network local",
     "remove:local": "graph remove --node http://localhost:8020/ alephao/Genzee --network local",
-    "deploy:local": "yarn codegen:local && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee --network local subgraph.local.yaml",
+    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 alephao/Genzee --network local",
     "test": "graph test",
     "format": "prettier . -w",
     "prepare": "husky install"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "https://github.com/alephao/graph-cli#b85ed6da840fa61a97d7adcfcadeef2b36b188ff",
-    "@graphprotocol/graph-ts": "^0.26.0"
+    "@graphprotocol/graph-ts": "^0.26.0",
+    "source-map-support": "^0.5.21"
   },
   "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.29.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.5",
     "matchstick-as": "^0.4.2",

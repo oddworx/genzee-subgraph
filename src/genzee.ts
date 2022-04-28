@@ -1,21 +1,20 @@
+import { dataSource } from "@graphprotocol/graph-ts";
 import { Transfer } from "../generated/Genzee/Genzee";
 import {
   blackhole,
-  genzeeContractAddress,
+  contractAddresses,
   loadOrCreateContractStats,
   loadOrCreateNft,
   loadOrCreateUser,
-  oddxContractAddress,
-  oddxStakingContractAddress,
 } from "./common";
 
 const ignoreTransfer: (event: Transfer) => bool = (event) => {
+  const addresses = contractAddresses();
   return (
-    event.params.from.toHexString() == oddxContractAddress.toLowerCase() ||
-    event.params.from.toHexString() ==
-      oddxStakingContractAddress.toLowerCase() ||
-    event.params.to.toHexString() == oddxContractAddress.toLowerCase() ||
-    event.params.to.toHexString() == oddxStakingContractAddress.toLowerCase()
+    event.params.from.toHexString() == addresses.oddx ||
+    event.params.from.toHexString() == addresses.staking ||
+    event.params.to.toHexString() == addresses.oddx ||
+    event.params.to.toHexString() == addresses.staking
   );
 };
 
@@ -25,38 +24,30 @@ export function handleTransfer(event: Transfer): void {
   if (ignoreTransfer(event)) {
     return;
   }
-
+  const addresses = contractAddresses();
   let token = loadOrCreateNft(
     event.params.tokenId,
-    genzeeContractAddress,
+    addresses.genzee,
     event.params.to.toHexString()
   );
   token.owner = event.params.to.toHexString();
   token.save();
-
-  let stats = loadOrCreateContractStats(genzeeContractAddress);
-
+  let stats = loadOrCreateContractStats(addresses.genzee);
   let userTo = loadOrCreateUser(event.params.to.toHexString());
-
   if (userTo.genzeeBalance == 0) {
     stats.totalOwners++;
     stats.save();
   }
-
   userTo.genzeeBalance++;
   userTo.save();
-
   if (event.params.from.toHexString() == blackhole) {
     return;
   }
-
   let userFrom = loadOrCreateUser(event.params.from.toHexString());
   userFrom.genzeeBalance--;
-
   if (userFrom.genzeeBalance == 0) {
     stats.totalOwners--;
     stats.save();
   }
-
   userFrom.save();
 }

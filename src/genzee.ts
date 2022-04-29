@@ -1,4 +1,3 @@
-import { dataSource } from "@graphprotocol/graph-ts";
 import { Transfer } from "../generated/Genzee/Genzee";
 import {
   blackhole,

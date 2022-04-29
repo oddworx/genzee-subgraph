@@ -1,4 +1,3 @@
-import { dataSource } from "@graphprotocol/graph-ts";
 import {
   Transfer,
   StakedNft,

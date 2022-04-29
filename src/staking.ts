@@ -10,18 +10,17 @@ import {
 } from "./common";
 
 export function handleStake(event: StakedNft): void {
+  const contractAddress = event.params.nftContract.toHexString().toLowerCase();
   let token = loadOrCreateNft(
     event.params.nftId,
-    event.params.nftContract.toHexString().toLowerCase(),
+    contractAddress,
     event.params.user.toHexString()
   );
 
   token.stakedAt = event.block.timestamp;
   token.save();
 
-  let stats = loadOrCreateContractStats(
-    event.params.nftContract.toHexString().toLowerCase()
-  );
+  let stats = loadOrCreateContractStats(contractAddress);
   stats.totalStaked++;
   stats.save();
 }
